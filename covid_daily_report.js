@@ -86,7 +86,7 @@ async function report() {
         await page.evaluate(()=>{
             $('#save').click();
         });
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(1000);
         await page.evaluate(()=>{
             $('a.bh-dialog-btn.bh-bg-primary.bh-color-primary-5').click();
         });
@@ -98,17 +98,17 @@ async function report() {
         if (today_status == "今日已填报！") {
             console.log("✔填报成功");
         }
-        await page.goto('https://eportal.uestc.edu.cn/jkdkapp/sys/lwReportEpidemicStu/index.do?#/tempReport', {
-            waitUntil:"networkidle0"
-        });
-        await page.waitForSelector('div[data-action="add"]');
-        await page.click('div[data-action="add"]');
-        await page.waitForTimeout(2000)
+        // await page.goto('https://eportal.uestc.edu.cn/jkdkapp/sys/lwReportEpidemicStu/index.do?#/tempReport', {
+        //     waitUntil:"networkidle0"
+        // });
+        // await page.waitForSelector('div[data-action="add"]');
+        // await page.click('div[data-action="add"]');
+        // await page.waitForTimeout(2000)
         
-        await page.waitForSelector('input[data-name="TEMPERATURE"]')
-        await page.type('input[data-name="TEMPERATURE"]','36.5')
-        await page.waitForTimeout(2000)
-        await page.click('div[data-action="save"]');
+        // await page.waitForSelector('input[data-name="TEMPERATURE"]')
+        // await page.type('input[data-name="TEMPERATURE"]','36.5')
+        // await page.waitForTimeout(2000)
+        // await page.click('div[data-action="save"]');
 
     }
     catch(e){
@@ -125,7 +125,7 @@ async function exec() {
     while(true){
         await report();
         await sleep(30000) //30s
-        await sleep(14400000) //4hours
+        await sleep(259200000) //24hours
     }
 }
 
